@@ -7,7 +7,6 @@ let timeOnline = {};
 const connectSocketServer = (httpServer) => {
   const io = new Server(httpServer, {
     cors: {
-      // Prioritize your deployed environment production domain variable
       origin: process.env.CLIENT_URL || "http://localhost:5173",
       methods: ["GET", "POST"],
       allowedHeaders: ["*"],
@@ -30,20 +29,16 @@ const connectSocketServer = (httpServer) => {
       connections[roomId].push({ id: socket.id, name });
       timeOnline[socket.id] = Date.now();
 
-      // Standardize room joining
       socket.join(roomId);
 
-      // Broadcast to everyone in the room that a user has joined
       io.to(roomId).emit("userJoined", {
         userId: socket.id,
         currentUsers: connections[roomId],
       });
 
-      // Send the chat message log history back to the single peer who just connected
       io.to(socket.id).emit("joined", messageHistory[roomId] || []);
     });
 
-    // FIXED: Route signaling packets directly to the targeted individual user ID, not the room string name
     socket.on("signal", (targetUserId, message) => {
       io.to(targetUserId).emit("signal", socket.id, message);
     });
@@ -83,7 +78,7 @@ const connectSocketServer = (httpServer) => {
           return member.id !== socket.id;
         });
 
-        // Notify the remaining room participants
+        
         io.to(key).emit("userLeft", {
           userId: socket.id,
           username,
