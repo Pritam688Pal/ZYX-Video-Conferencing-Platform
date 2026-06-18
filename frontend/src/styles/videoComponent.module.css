@@ -1,0 +1,313 @@
+.meetContainer {
+  height: 100vh;
+  width: 100%;
+  background: #0f172a;
+  overflow: hidden;
+  position: relative;
+}
+
+/* GRID */
+
+.videoGrid {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  height: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
+  justify-content: center;
+}
+
+@media (min-width: 1200px) {
+  .videoGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1199px) {
+  .videoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .videoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.videoCard {
+  position: relative;
+  background: #111827;
+  overflow: hidden;
+  min-height: 250px;
+  aspect-ratio: 16 / 9;
+}
+
+.videoCard video {
+  width: 95%;
+  height: 95%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.participantName {
+  position: absolute;
+  bottom: 17px;
+  left: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* LOCAL VIDEO */
+
+.localVideoWrapper {
+  position: fixed;
+  right: 15px;
+  bottom: 90px;
+
+  width: 220px;
+  height: 150px;
+
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .localVideoWrapper {
+    width: 120px;
+    height: 90px;
+    right: 10px;
+    bottom: 80px;
+  }
+}
+
+.localVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CHAT */
+
+.chatPanel {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+
+  width: 350px;
+  height: 100vh;
+
+  background: #0f172a;
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.chatHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 14px 18px;
+
+}
+
+.chatPanel path {
+  color: white;
+  cursor: pointer;
+  width: 42px;
+  height: 42px;
+}
+
+.myMessage .messageBubble {
+    background: #1976d2;
+    color: white;
+}
+
+
+
+.messageBubble {
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: #f3f4f6;
+    word-wrap: break-word;
+}
+
+.sender {
+    font-size: 12px;
+    color: gray;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.chatMessages {
+    flex: 1;
+    overflow-y: auto;
+
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.myMessage {
+    align-self: flex-end;
+    max-width: 75%;
+}
+
+.otherMessage {
+    align-self: flex-start;
+    max-width: 75%;
+}
+
+.chatInput {
+  display: flex;
+  gap: 10px;
+
+  padding: 12px;
+
+
+  margin-top: auto;
+}
+
+.chatInput input {
+  background-color: white;
+  border-radius: 7%;
+}
+
+/* CONTROL BAR */
+
+.controlBar {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 8px;
+
+  padding: 8px 16px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.75);
+
+  max-width: 95vw;
+}
+
+.controlBar button {
+  width: 42px;
+  height: 42px;
+}
+
+.lobbyContainer {
+  min-height: 100vh;
+  background: #0f172a;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+
+  padding: 30px;
+}
+
+.previewCard {
+  width: 700px;
+  height: 450px;
+
+  position: relative;
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  background: #111827;
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.previewVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.deviceControls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 20px;
+
+  padding: 12px 20px;
+
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.6);
+
+  backdrop-filter: blur(10px);
+}
+
+.deviceControls button {
+  color: white;
+}
+
+.joinCard {
+  width: 350px;
+
+  background-color: #ffffff;
+
+  padding: 30px;
+
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  color: white;
+}
+
+.joinCard h1,
+h2 {
+  margin: 0;
+  color: rgb(31, 31, 31);
+}
+
+.joinCard p {
+  color: #a7a7a7;
+}
+
+@media (max-width: 900px) {
+  .lobbyContainer {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .previewCard {
+    width: 95%;
+    height: 250px;
+  }
+
+  .joinCard {
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .chatPanel {
+    width: 100%;
+  }
+}
