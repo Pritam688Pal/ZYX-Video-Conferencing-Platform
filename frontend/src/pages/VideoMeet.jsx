@@ -13,12 +13,10 @@ import ChatIcon from '@mui/icons-material/Chat';
 import CloseIcon from '@mui/icons-material/Close';
 import SpeakerNotesOffIcon from '@mui/icons-material/SpeakerNotesOff';
 import { AuthContext } from '../contexts/AuthContext.jsx';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 
-const server_url = process.env.socket_server_url;
+
+const server_url = import.meta.env.VITE_socket_server_url;
 let connections = {};
 const peerConfigConnections = {
     "iceServers": [{ "urls": "stun:stun.l.google.com:19302" }]

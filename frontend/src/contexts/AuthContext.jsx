@@ -1,14 +1,12 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import httpStatus from 'http-status';
-import dotenv from 'dotenv';
 
-dotenv.config();
 
 export const AuthContext = createContext(null);
 
 const client = axios.create({
-    baseURL: process.env.server_baseURL,
+    baseURL: import.meta.env.VITE_SERVER_URL,
     withCredentials: true
 });
 
