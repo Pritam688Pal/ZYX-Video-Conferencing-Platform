@@ -5,6 +5,7 @@ let messageHistory = {};
 let timeOnline = {};
 
 const connectSocketServer = (httpServer) => {
+  console.log("🔌 Initializing Socket.IO server...");
   const io = new Server(httpServer, {
     cors: {
       origin: process.env.CLIENT_URL || "http://localhost:5173",
@@ -15,6 +16,7 @@ const connectSocketServer = (httpServer) => {
   });
 
   io.on("connection", (socket) => {
+    console.log("✅ New client connected:", socket.id);
 
     socket.on("joinRoom", ({ roomId, name }) => {
       if (timeOnline[socket.id]) {
