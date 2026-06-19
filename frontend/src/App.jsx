@@ -12,11 +12,11 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
           <Route path="/auth/:state" element={<Authentication />} />
           <Route path="/home" element={<HomeComponent />} />
           <Route path='/:url' element={<VideoMeet />} />
           <Route path='/history' element={<History />} />
+          <Route path="*" element={<LandingPage />} />
 
         </Routes>
       </Router>
