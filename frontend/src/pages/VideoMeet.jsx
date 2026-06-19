@@ -212,6 +212,7 @@ function VideoMeet() {
                     };
 
                     pc.ontrack = (event) => {
+                        if (id === socketIdRef.current) return;
                         const remoteStream = event.streams[0];
                         setVideos(prev => {
                             const exists = prev.find(v => v.socketId === id);
