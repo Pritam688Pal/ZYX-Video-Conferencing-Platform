@@ -18,13 +18,6 @@ export const AuthProvider = ({ children }) => {
         return !!token;
     };
 
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (token) {
-            setUser(true);
-        }
-    }, []);
-
     const handleRegister = async (name, username, password) => {
         try {
             let request = await client.post("/register", {
