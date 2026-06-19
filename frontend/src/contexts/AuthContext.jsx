@@ -6,7 +6,7 @@ import httpStatus from 'http-status';
 export const AuthContext = createContext(null);
 
 const client = axios.create({
-    baseURL: import.meta.env.VITE_SERVER_URL,
+    baseURL: import.meta.env.VITE_server_baseURL,
     withCredentials: true
 });
 
