@@ -122,6 +122,9 @@ function VideoMeet() {
             } catch (error) {
                 console.log(error);
             }
+            if (window.localStream) {
+                window.localStream.getTracks().forEach(t => t.stop());
+            }
             let blackSilence = (...args) => new MediaStream([black(...args), silence()]);
             window.localStream = blackSilence();
             if (localVideoRef.current) localVideoRef.current.srcObject = window.localStream;
@@ -322,6 +325,7 @@ function VideoMeet() {
                 socketRef.current.emit("signal", id, JSON.stringify({ sdp: connections[id].localDescription }));
             }
             stream.getVideoTracks()[0].onended = () => {
+                stream.getTracks().forEach(track => track.stop());
                 setScreen(false);
                 getUserMedia();
             };
@@ -329,6 +333,15 @@ function VideoMeet() {
             console.error(err);
         }
     };
+
+    useEffect(() => {
+        return () => {
+            if (window.localStream) {
+                window.localStream.getTracks().forEach(track => track.stop());
+            }
+            Object.values(connections).forEach(pc => pc.close());
+        };
+    }, []);
 
     return (
         <div style={{ backgroundColor: "#14171a", minHeight: "100vh", color: "#fff", fontFamily: "sans-serif" }}>
