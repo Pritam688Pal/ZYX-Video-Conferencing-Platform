@@ -194,7 +194,7 @@ function VideoMeet() {
                     connections[userId].close();
                     delete connections[userId];
                 }
-                setVideos(prev => prev.filter(v => v.socketId !== userId));
+                setVideos(prev => prev.filter(v => v.socketId != userId));
             });
             socketRef.current.on('userJoined', ({ userId, currentUsers }) => {
                 currentUsers.forEach(({ id, name }) => {
@@ -215,7 +215,7 @@ function VideoMeet() {
                             if (exists) {
                                 return prev.map(v => v.socketId === id ? { ...v, stream: remoteStream } : v);
                             }
-                            return [...prev, { socketId: id, name, stream: remoteStream }];
+                            return [...prev, { socketId: id, n: name, stream: remoteStream }];
                         });
                     };
 
@@ -435,7 +435,7 @@ function VideoMeet() {
                                         ref={(ref) => { if (ref && vid.stream) ref.srcObject = vid.stream; }}
                                     />
                                     <div style={{ position: "absolute", bottom: "8px", left: "8px", backgroundColor: "rgba(0,0,0,0.6)", padding: "2px 8px", borderRadius: "4px", fontSize: "0.8rem" }}>
-                                        {vid.name}
+                                        {vid.n}
                                     </div>
                                 </div>
                             ))}
