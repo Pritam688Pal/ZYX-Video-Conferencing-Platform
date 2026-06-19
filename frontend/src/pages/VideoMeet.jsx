@@ -259,7 +259,7 @@ function VideoMeet() {
     };
 
     const sendMessage = () => {
-        if (!message.trim()) return;
+        if (!message) return;
         socketRef.current.emit('chatMessage', { message, roomId: param });
         setMessage("");
     };
@@ -405,7 +405,7 @@ function VideoMeet() {
                             inputProps={{ style: { color: '#fff' } }}
                             style={{ backgroundColor: "rgba(255,255,255,0.05)", borderRadius: "4px" }}
                         />
-                        <Button variant="contained" size="large" onClick={connect} disabled={!username.trim()} style={{ backgroundColor: "#1976d2", padding: "12px" }}>
+                        <Button variant="contained" size="large" onClick={connect} disabled={!username} style={{ backgroundColor: "#1976d2", padding: "12px" }}>
                             Join Conference
                         </Button>
                     </div>
