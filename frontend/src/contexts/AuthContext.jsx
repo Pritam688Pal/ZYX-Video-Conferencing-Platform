@@ -15,13 +15,13 @@ export const AuthProvider = ({ children }) => {
 
     const isLoggedIn = () => {
         const token = localStorage.getItem("token");
-        return !!token; 
+        return !!token;
     };
 
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {
-            setUser(true); 
+            setUser(true);
         }
     }, []);
 
@@ -35,6 +35,8 @@ export const AuthProvider = ({ children }) => {
 
             if (request.status === httpStatus.CREATED) {
                 if (request.data.token) {
+                    console.log(request.data);
+
                     localStorage.setItem("token", request.data.token);
                 }
                 setUser(username);
@@ -53,6 +55,7 @@ export const AuthProvider = ({ children }) => {
             });
 
             if (request.status === httpStatus.OK || request.status === 200) {
+                console.log(request.data);
                 localStorage.setItem("token", request.data.token);
                 setUser(username);
                 return request.data;
@@ -69,7 +72,7 @@ export const AuthProvider = ({ children }) => {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`
                 }
             });
-            return request.data; 
+            return request.data;
         } catch (err) {
             throw err;
         }
@@ -78,10 +81,10 @@ export const AuthProvider = ({ children }) => {
     const addToUserHistory = async (meetingCode) => {
         try {
             let request = await client.post(
-                "/add_to_activity", 
+                "/add_to_activity",
                 { meeting_code: meetingCode },
-                { 
-                    headers: {                 
+                {
+                    headers: {
                         "Authorization": `Bearer ${localStorage.getItem("token")}`
                     }
                 }
@@ -95,7 +98,7 @@ export const AuthProvider = ({ children }) => {
     const handleLogout = () => {
         try {
             localStorage.removeItem("token");
-            setUser(null); 
+            setUser(null);
         } catch (error) {
             throw error;
         }
