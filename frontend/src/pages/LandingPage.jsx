@@ -48,7 +48,7 @@ function LandingPage() {
                             color="error"
                             onClick={() => {
                                 localStorage.removeItem("token");
-                                navigate("/auth");
+                                navigate("/home");
                             }}
                         >
                             Logout
