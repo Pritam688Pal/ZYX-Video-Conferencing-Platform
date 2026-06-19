@@ -43,7 +43,7 @@ function VideoMeet() {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
     const [askForUsername, setAskForUsername] = useState(true);
-    const [username, setUsername] = useState(user || "");
+    const [username, setUsername] = useState(user);
     const [videos, setVideos] = useState([]);
     const [copied, setCopied] = useState(false);
 
