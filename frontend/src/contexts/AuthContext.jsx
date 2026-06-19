@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
             if (request.status === httpStatus.CREATED) {
                 if (request.data.token) {
-                    console.log(request.data);
+                    // console.log(request.data);
 
                     localStorage.setItem("token", request.data.token);
                 }
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
             });
 
             if (request.status === httpStatus.OK || request.status === 200) {
-                console.log(request.data);
+                // console.log(request.data);
                 localStorage.setItem("token", request.data.token);
                 setUser(username);
                 return request.data;
